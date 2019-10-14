@@ -13,25 +13,59 @@
 	</style>
 </head>
 <body >
-	<div class="header">
-  <h2>Nantes metropole</h2>
-</div>
+
 	<div id="demo">
-		<div v-for="record in infos" :id="record" class="w3-quarter" >
-			<table class="w3-row-padding w3-padding-16 w3-center" >
-				<ul>
-					<li>
-						<h4>{{ record.fields.nom }}</h4>
-				</li>
-					</ul>
-				<ul>
-					<p>{{ record.fields.adresse }}</p>
-					<p>{{ record.fields.date }}</p>
-				</ul>
-			</table>
+		<header class="masthead clear">
+  <div class="centered">
 
+    <div class="site-branding">
+      <h1 class="site-title">Evenements</h1>
+    </div>
+    <!-- .site-title -->
+  </div>
+  <!-- .centered -->
+</header>
+<!-- .masthead -->
 
-	</div>
+<main class="main-area">
+
+  <div class="centered" v-for="record in infos" :id="record"  >
+
+    <section class="cards">
+
+      <article class="card">
+        <a href="#">
+          <div class="card-content">
+            <h2>{{ record.fields.nom }}</h2>
+            <p>{{ record.fields.lieu }}</p>
+						<p>
+						{{ record.fields.date | formatDate}}
+						-
+						{{ record.fields.heure_debut}}
+					</p>
+          <!-- .card-content -->
+        </a>
+				<p>{{ record.description }}</P>
+      </article>
+      <!-- .card -->
+			<article class="card">
+				<a href="#">
+					<div class="card-content">
+						<p>- {{ record.fields.lieu_siteweb }}<p>
+						<p>- {{ record.fields.lieu_tel }}<p>
+						<p>- {{ record.fields.rubrique }}<p>
+							<p>- {{ record.fields.type }}<p>
+					<!-- .card-content -->
+				</a>
+				<p>{{ record.description }}</P>
+			</article>
+    </section>
+    <!-- .cards -->
+
+  </div>
+  <!-- .centered -->
+
+</main>
 	</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
