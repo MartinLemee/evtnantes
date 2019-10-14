@@ -14,9 +14,9 @@
 </head>
 <body >
 	<div id="demo">
-		<div v-for="record in info" class="record">
+		<div v-for="records in infos" class="infos">
 
-		<pre>{{ record.records }};</pre>
+		<pre>{{ records }};</pre>
 		<span v-html=''> </span>
 
 	</div>
@@ -33,7 +33,8 @@
     el: '#demo',
 
     data: {
-				info: null
+				infos: null,
+				records: []
     },
 
 		created: function () {
@@ -44,16 +45,26 @@
 			currentRecord: 'fetchData'
 		},
 
-		filters: {
-
-		},
-
-
 		methods: {
 			fetchData: function() {
 				axios.get(apiURL)
-				.then(response => (this.info = response))
-				}
+				.then(response => {
+					this.infos = response.data;
+					console.log(this.infos)
+					this.records = response.data.records
+					console.log(response.data.records)
+				})
+
+				/*fetch(apiURL)
+				.then((response) => { return response.json() })
+				.then((data) => {
+					this.infos = response.data
+					console.log(this.infos)
+				})
+				.catch(error => {
+      console.log(error);
+    })*/
+	},
 			}
 	});
 
