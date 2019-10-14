@@ -14,10 +14,11 @@
 </head>
 <body >
 	<div id="demo">
-		<div v-for="records in infos" class="infos">
+		<div v-for="record in infos" :id="record" >
 
-		<pre>{{ records }};</pre>
-		<span v-html=''> </span>
+		<pre>{{ record.fields }}:
+
+		</pre>
 
 	</div>
 	</div>
@@ -33,8 +34,11 @@
     el: '#demo',
 
     data: {
-				infos: null,
-				records: []
+			records: ['fields', 'record_timestamp'],
+			currentRec: 'fields',
+			infos: null,
+
+
     },
 
 		created: function () {
@@ -47,12 +51,11 @@
 
 		methods: {
 			fetchData: function() {
+				var self = this
 				axios.get(apiURL)
-				.then(response => {
-					this.infos = response.data;
-					console.log(this.infos)
-					this.records = response.data.records
-					console.log(response.data.records)
+				.then(function (response) {
+					self.infos = response.data.records
+					console.log(self.infos)
 				})
 
 				/*fetch(apiURL)
