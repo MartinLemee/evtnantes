@@ -13,6 +13,9 @@
 	</style>
 </head>
 <body >
+	<div class="header">
+  <h2>Nantes metropole</h2>
+</div>
 	<div id="demo">
 		<div v-for="record in infos" :id="record" class="w3-quarter" >
 			<table class="w3-row-padding w3-padding-16 w3-center" >
@@ -22,6 +25,7 @@
 				</li>
 					</ul>
 				<ul>
+					<p>{{ record.fields.adresse }}</p>
 					<p>{{ record.fields.date }}</p>
 				</ul>
 			</table>
